@@ -3,28 +3,29 @@ export interface Invoice {
     vendor: string;
     invoiceNumber: string;
     invoiceDate: string;
-    serviceDate: string | null; // This is what we need to fix
-    currency: string;
+    serviceDate: string | null;
+    currency: string | null; // Can be null now
     netTotal: number;
     taxRate: number;
     taxTotal: number;
     grossTotal: number;
+    poNumber?: string | null; // New field
     lineItems: Array<{
         description: string;
         sku?: string | null;
         qty: number;
         unitPrice: number;
     }>;
-    textPayload: string; // The raw OCR text
+    textPayload: string;
 }
 
 export interface MemoryRule {
     id?: number;
     vendor: string;
-    type: 'extraction' | 'calculation' | 'mapping';
-    trigger_text: string;   // e.g., "Leistungsdatum" or "MwSt. inkl"
-    target_field: string;   // e.g., "serviceDate" or "netTotal"
-    action_value: string;   // e.g., regex pattern or formula
+    type: 'extraction' | 'calculation' | 'mapping' | 'validation';
+    trigger_text: string;
+    target_field: string;
+    action_value: string;
     confidence: number;
 }
 
@@ -35,4 +36,5 @@ export interface ProcessedInvoice {
     confidenceScore: number;
     auditTrail: string[];
     requiresHumanReview: boolean;
+    isDuplicate: boolean; // New flag
 }
