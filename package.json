@@ -1,0 +1,31 @@
+{
+  "name": "flowbit-memory-agent",
+  "version": "1.0.0",
+  "description": "AI Agent with Learned Memory for Invoice Processing",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Prateekray/flowbit-memory-agent.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Prateekray/flowbit-memory-agent/issues"
+  },
+  "homepage": "https://github.com/Prateekray/flowbit-memory-agent#readme",
+  "devDependencies": {
+    "@types/node": "^25.0.3",
+    "@types/sqlite3": "^3.1.11",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7"
+  }
+}
