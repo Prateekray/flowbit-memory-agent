@@ -2,7 +2,7 @@ import { initDB } from './database';
 import { MemoryManager } from './memoryManager';
 import { InvoiceProcessor } from './processor';
 import { SAMPLE_INVOICES } from './data';
-import { MemoryRule } from './types';
+import type { MemoryRule } from './types'; // Fixed: Added 'type' keyword
 
 async function main() {
     console.log("🚀 Starting Flowbit AI Memory Agent...\n");
@@ -18,7 +18,8 @@ async function main() {
     console.log("--- SCENARIO A: Supplier GmbH (Learning Service Date) ---");
     
     // Step A: Run Invoice 1 (Should Fail/Low Confidence)
-    const invoice1 = SAMPLE_INVOICES[0];
+    // Added '!' to tell TypeScript we are sure this data exists
+    const invoice1 = SAMPLE_INVOICES[0]!; 
     console.log(`\n📄 Processing ${invoice1.invoiceId} (Run 1)...`);
     const result1 = await processor.process(invoice1);
     
@@ -40,7 +41,7 @@ async function main() {
     }
 
     // Step C: Run Invoice 2 (Should Succeed automatically)
-    const invoice2 = SAMPLE_INVOICES[1];
+    const invoice2 = SAMPLE_INVOICES[1]!; // Added '!'
     console.log(`\n📄 Processing ${invoice2.invoiceId} (Run 2 - Same Vendor)...`);
     const result2 = await processor.process(invoice2);
     
@@ -64,7 +65,7 @@ async function main() {
         confidence: 0.9
     });
 
-    const invoice3 = SAMPLE_INVOICES[2];
+    const invoice3 = SAMPLE_INVOICES[2]!; // Added '!'
     console.log(`\n📄 Processing ${invoice3.invoiceId}...`);
     console.log(`   Original Net Total: ${invoice3.netTotal} (Incorrect)`);
     
