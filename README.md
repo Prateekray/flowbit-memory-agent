@@ -48,3 +48,8 @@ The following scenarios run automatically in the demo:
     ```bash
     npx ts-node src/index.ts
     ```
+### ✅ Verification
+After running the demo, you can verify the strict JSON compliance artifacts by checking the output directory:
+
+```bash
+ls -l output
