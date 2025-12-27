@@ -48,7 +48,3 @@ The following scenarios run automatically in the demo:
     ```bash
     npx ts-node src/index.ts
     ```
-
-## 🧪 Scenarios Covered
-1.  **Supplier GmbH:** Learns to map "Leistungsdatum" to `serviceDate` dynamically.
-2.  **Parts AG:** Detects "MwSt. inkl" and automatically recalculates the Net Total.

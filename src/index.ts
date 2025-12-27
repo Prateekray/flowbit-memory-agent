@@ -3,6 +3,17 @@ import { MemoryManager } from './memoryManager';
 import { InvoiceProcessor } from './processor';
 import { SAMPLE_INVOICES } from './data';
 import type { MemoryRule } from './types';
+import * as fs from 'fs';
+import * as path from 'path';
+
+// Helper to save JSON output for compliance
+function saveOutput(fileName: string, data: any) {
+    const outputDir = path.join(__dirname, '../output');
+    if (!fs.existsSync(outputDir)) {
+        fs.mkdirSync(outputDir);
+    }
+    fs.writeFileSync(path.join(outputDir, fileName), JSON.stringify(data, null, 2));
+}
 
 async function main() {
     console.log("🚀 Starting Flowbit AI Memory Agent (Full Suite)...\n");
@@ -27,6 +38,10 @@ async function main() {
     const invA3 = SAMPLE_INVOICES[1]!;
     console.log(`\n📄 Processing ${invA3.invoiceId} (Date + PO Match)...`);
     const resA3 = await processor.process(invA3);
+    
+    // SAVE OUTPUT
+    saveOutput(`${invA3.invoiceId}.json`, resA3);
+
     console.log(`✅ Date Found: ${resA3.normalizedInvoice.serviceDate}`);
     console.log(`✅ PO Match:   ${resA3.normalizedInvoice.poNumber}`);
 
@@ -46,6 +61,10 @@ async function main() {
     const invB3 = SAMPLE_INVOICES[3]!; // The one with missing currency
     console.log(`\n📄 Processing ${invB3.invoiceId} (Missing Currency)...`);
     const resB3 = await processor.process(invB3);
+
+    // SAVE OUTPUT
+    saveOutput(`${invB3.invoiceId}.json`, resB3);
+
     console.log(`✅ Currency:   ${resB3.normalizedInvoice.currency || 'FAILED'}`);
     console.log(`📝 Log:        ${resB3.correctionsApplied.join(', ')}`);
 
@@ -65,11 +84,15 @@ async function main() {
     const invC2 = SAMPLE_INVOICES[4]!;
     console.log(`\n📄 Processing ${invC2.invoiceId} (SKU Mapping)...`);
     const resC2 = await processor.process(invC2);
+
+    // SAVE OUTPUT
+    saveOutput(`${invC2.invoiceId}.json`, resC2);
+
     console.log(`✅ SKU Mapped: ${resC2.normalizedInvoice.lineItems[0].sku}`);
     
     // Check Skonto
     if (resC2.normalizedInvoice.textPayload.includes("Skonto")) {
-        console.log(`✅ Skonto:     Detected in Payment Terms`);
+        console.log(`✅ Skonto:      Detected in Payment Terms`);
     }
 
     // --- 4. DUPLICATE DETECTION ---
@@ -79,13 +102,16 @@ async function main() {
     console.log(`\n📄 Processing ${dupInv.invoiceId} (Duplicate Check)...`);
     const resDup = await processor.process(dupInv);
     
+    // SAVE OUTPUT
+    saveOutput(`${dupInv.invoiceId}.json`, resDup);
+
     if (resDup.isDuplicate) {
         console.log(`⛔ BLOCKED: ${resDup.auditTrail[1]}`);
     } else {
         console.log(`❌ Failed to detect duplicate`);
     }
 
-    console.log("\n🏁 Full Demo Complete.");
+    console.log("\n🏁 Full Demo Complete. JSON outputs saved to /output folder.");
 }
 
 main().catch(console.error);
