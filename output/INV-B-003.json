@@ -1,0 +1,33 @@
+{
+  "originalId": "INV-B-003",
+  "normalizedInvoice": {
+    "invoiceId": "INV-B-003",
+    "vendor": "Parts AG",
+    "invoiceNumber": "PA-7810",
+    "invoiceDate": "03-03-2024",
+    "serviceDate": null,
+    "currency": "EUR",
+    "netTotal": 1000,
+    "taxRate": 0.19,
+    "taxTotal": 190,
+    "grossTotal": 1190,
+    "lineItems": [
+      {
+        "description": "Nuts",
+        "sku": "NUT-10",
+        "qty": 500,
+        "unitPrice": 2
+      }
+    ],
+    "textPayload": "Invoice No: PA-7810\nTotal: 1190.00 EUR"
+  },
+  "correctionsApplied": [
+    "Recovered Currency: EUR from text"
+  ],
+  "confidenceScore": 0.5,
+  "auditTrail": [
+    "Processing invoice INV-B-003 from Parts AG"
+  ],
+  "requiresHumanReview": false,
+  "isDuplicate": false
+}

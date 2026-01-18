@@ -1,0 +1,32 @@
+{
+  "originalId": "INV-C-002-DUP",
+  "normalizedInvoice": {
+    "invoiceId": "INV-C-002-DUP",
+    "vendor": "Freight & Co",
+    "invoiceNumber": "FC-1002",
+    "invoiceDate": "10.03.2024",
+    "serviceDate": null,
+    "currency": "EUR",
+    "netTotal": 1000,
+    "taxRate": 0.19,
+    "taxTotal": 190,
+    "grossTotal": 1190,
+    "lineItems": [
+      {
+        "description": "Seefracht / Shipping",
+        "sku": null,
+        "qty": 1,
+        "unitPrice": 1000
+      }
+    ],
+    "textPayload": "Invoice: FC-1002"
+  },
+  "correctionsApplied": [],
+  "confidenceScore": 0,
+  "auditTrail": [
+    "Processing invoice INV-C-002-DUP from Freight & Co",
+    "⚠️ DUPLICATE DETECTED! Matched Invoice Number: FC-1002"
+  ],
+  "requiresHumanReview": true,
+  "isDuplicate": true
+}

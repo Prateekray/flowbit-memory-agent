@@ -1,0 +1,35 @@
+{
+  "originalId": "INV-A-003",
+  "normalizedInvoice": {
+    "invoiceId": "INV-A-003",
+    "vendor": "Supplier GmbH",
+    "invoiceNumber": "INV-2024-003",
+    "invoiceDate": "25.01.2024",
+    "serviceDate": "20.01.2024",
+    "currency": "EUR",
+    "netTotal": 500,
+    "taxRate": 0.19,
+    "taxTotal": 95,
+    "grossTotal": 595,
+    "lineItems": [
+      {
+        "description": "Widget Pro",
+        "sku": "WIDGET-002",
+        "qty": 20,
+        "unitPrice": 25
+      }
+    ],
+    "textPayload": "Rechnungsnr: INV-2024-003\nLeistungsdatum: 20.01.2024",
+    "poNumber": "PO-A-051"
+  },
+  "correctionsApplied": [
+    "Extracted serviceDate: 20.01.2024",
+    "Auto-Suggested PO: PO-A-051 (Confidence: High)"
+  ],
+  "confidenceScore": 0.7,
+  "auditTrail": [
+    "Processing invoice INV-A-003 from Supplier GmbH"
+  ],
+  "requiresHumanReview": false,
+  "isDuplicate": false
+}
